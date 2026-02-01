@@ -33,10 +33,10 @@ def test_parse_recipe_success(client: TestClient, test_recipe_html: str) -> None
 
     with patch("httpx.AsyncClient.get", return_value=mock_response):
         with patch(
-            "app.api.routes.recipe_scraper.scrape_html", return_value=mock_scraper
+            "app.api.routes.recipes.scrape_html", return_value=mock_scraper
         ):
             response = client.post(
-                f"{settings.API_V1_STR}/recipe_scraper/parse_recipe/",
+                f"{settings.API_V1_STR}/recipes/scrape",
                 params={"url": test_url},
             )
 
@@ -49,7 +49,7 @@ def test_parse_recipe_success(client: TestClient, test_recipe_html: str) -> None
 def test_parse_recipe_missing_url(client: TestClient) -> None:
     """Test recipe parsing fails when URL parameter is missing."""
     response = client.post(
-        f"{settings.API_V1_STR}/recipe_scraper/parse_recipe/",
+        f"{settings.API_V1_STR}/recipes/scrape",
     )
 
     # Should return 422 Unprocessable Entity for missing required parameter
@@ -68,7 +68,7 @@ def test_parse_recipe_http_error(client: TestClient) -> None:
 
     with patch("httpx.AsyncClient.get", side_effect=mock_get_error):
         response = client.post(
-            f"{settings.API_V1_STR}/recipe_scraper/parse_recipe/",
+            f"{settings.API_V1_STR}/recipes/scrape",
             params={"url": test_url},
         )
 
@@ -87,10 +87,11 @@ def test_parse_recipe_request_error(client: TestClient) -> None:
 
     with patch("httpx.AsyncClient.get", side_effect=mock_get_error):
         response = client.post(
-            f"{settings.API_V1_STR}/recipe_scraper/parse_recipe/",
+            f"{settings.API_V1_STR}/recipes/scrape",
             params={"url": test_url},
         )
 
     assert response.status_code == 500
     content = response.json()
     assert "detail" in content
+

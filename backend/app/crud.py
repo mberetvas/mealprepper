@@ -4,7 +4,16 @@ from typing import Any
 from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
-from app.models import Item, ItemCreate, User, UserCreate, UserUpdate
+from app.models import (
+    Item,
+    ItemCreate,
+    Recipe,
+    RecipeCreate,
+    RecipeUpdate,
+    User,
+    UserCreate,
+    UserUpdate,
+)
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
@@ -66,3 +75,47 @@ def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID) -
     session.commit()
     session.refresh(db_item)
     return db_item
+
+
+def create_recipe(
+    *, session: Session, recipe_in: RecipeCreate, owner_id: uuid.UUID
+) -> Recipe:
+    """
+    Create a new recipe in the database.
+
+    Args:
+        session: Database session
+        recipe_in: Recipe creation schema
+        owner_id: UUID of the recipe owner
+
+    Returns:
+        Created recipe database model
+    """
+    db_recipe = Recipe.model_validate(recipe_in, update={"owner_id": owner_id})
+    session.add(db_recipe)
+    session.commit()
+    session.refresh(db_recipe)
+    return db_recipe
+
+
+def update_recipe(
+    *, session: Session, db_recipe: Recipe, recipe_in: RecipeUpdate
+) -> Recipe:
+    """
+    Update an existing recipe in the database.
+
+    Args:
+        session: Database session
+        db_recipe: Existing recipe database model
+        recipe_in: Recipe update schema with new values
+
+    Returns:
+        Updated recipe database model
+    """
+    recipe_data = recipe_in.model_dump(exclude_unset=True)
+    db_recipe.sqlmodel_update(recipe_data)
+    session.add(db_recipe)
+    session.commit()
+    session.refresh(db_recipe)
+    return db_recipe
+
