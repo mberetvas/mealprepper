@@ -131,7 +131,7 @@ class Recipe(SQLModel, table=True):
 
     created_at: datetime | None = Field(
         default_factory=get_datetime_utc,
-        sa_type=lambda: DateTime(timezone=True),  # type: ignore
+        sa_type=DateTime(timezone=True),  # type: ignore
     )
 
 
