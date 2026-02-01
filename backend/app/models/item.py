@@ -13,6 +13,8 @@ Response Schemas:
     - ItemsPublic: Paginated list of items
 """
 
+from __future__ import annotations
+
 import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING
@@ -21,9 +23,10 @@ from sqlalchemy import DateTime
 from sqlmodel import Field, Relationship, SQLModel
 
 from app.models.base import get_datetime_utc
+from app.models.user import User
 
 if TYPE_CHECKING:
-    from app.models.user import User
+    pass
 
 
 # Shared properties
@@ -60,7 +63,7 @@ class ItemUpdate(ItemBase):
     Used by PUT /items/{id} endpoint.
     """
     
-    title: str | None = Field(default=None, min_length=1, max_length=255)  # type: ignore
+    title: str | None = Field(default=None, min_length=1, max_length=255)
 
 
 # Database model, database table inferred from class name
@@ -87,7 +90,7 @@ class Item(ItemBase, table=True):
     owner_id: uuid.UUID = Field(
         foreign_key="user.id", nullable=False, ondelete="CASCADE"
     )
-    owner: "User" | None = Relationship(back_populates="items")  # type: ignore
+    owner: User = Relationship(back_populates="items")
 
 
 # Properties to return via API, id is always required

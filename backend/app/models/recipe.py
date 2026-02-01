@@ -15,6 +15,8 @@ Response Schemas:
     - IngredientGroup: Grouped ingredients with purpose
 """
 
+from __future__ import annotations
+
 import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING, Any
@@ -23,9 +25,10 @@ from sqlalchemy import JSON, DateTime
 from sqlmodel import Field, Relationship, SQLModel
 
 from app.models.base import get_datetime_utc
+from app.models.user import User
 
 if TYPE_CHECKING:
-    from app.models.user import User
+    pass
 
 
 class IngredientGroup(SQLModel):
@@ -111,7 +114,7 @@ class Recipe(RecipeBase, table=True):
     owner_id: uuid.UUID = Field(
         foreign_key="user.id", nullable=False, ondelete="CASCADE"
     )
-    owner: "User" | None = Relationship(back_populates="recipes")  # type: ignore
+    owner: User = Relationship(back_populates="recipes")
     
     # Override base fields to add JSON storage type
     ingredients: list[str] | None = Field(default=None, sa_type=JSON)
