@@ -127,3 +127,63 @@ class TokenPayload(SQLModel):
 class NewPassword(SQLModel):
     token: str
     new_password: str = Field(min_length=8, max_length=128)
+
+
+# Recipe scraper models
+class IngredientGroup(SQLModel):
+    """Group of ingredients with a purpose/label."""
+    purpose: str | None = None
+    ingredients: list[str] = Field(default_factory=list)
+
+
+class ParseRecipeResponse(SQLModel):
+    """
+    Response model for the parse_recipe endpoint.
+    Contains all possible fields from recipe_scrapers.AbstractScraper.to_json().
+    Most fields are optional since their availability depends on the recipe website.
+    """
+    # Core recipe information
+    title: str | None = None
+    author: str | None = None
+    description: str | None = None
+    image: str | None = None
+    site_name: str | None = None
+    host: str | None = None
+    canonical_url: str | None = None
+    language: str | None = None
+
+    # Ingredients
+    ingredients: list[str] | None = None
+    ingredient_groups: list[IngredientGroup] | None = None
+
+    # Instructions
+    instructions: str | None = None
+    instruction_list: list[str] | None = None
+
+    # Timing information
+    prep_time: int | None = None  # in minutes
+    cook_time: int | None = None  # in minutes
+    total_time: int | None = None  # in minutes
+
+    # Servings/yields
+    yields: str | None = None
+
+    # Ratings and reviews
+    ratings: float | None = None
+    ratings_count: float | None = None
+
+    # Categories and cuisine
+    category: str | None = None
+    cuisine: str | None = None
+    cooking_method: str | None = None
+
+    # Dietary and nutritional information
+    dietary_restrictions: list[str] | None = None
+    nutrients: dict[str, str] | None = None
+
+    # Equipment needed
+    equipment: list[str] | None = None
+
+    # Additional metadata
+    keywords: list[str] | None = None
+    links: list[dict[str, str]] | None = None
