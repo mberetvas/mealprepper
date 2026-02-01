@@ -1,8 +1,9 @@
 import uuid
 from datetime import datetime, timezone
+from typing import Any
 
 from pydantic import EmailStr
-from sqlalchemy import DateTime
+from sqlalchemy import JSON, DateTime
 from sqlmodel import Field, Relationship, SQLModel
 
 
@@ -54,6 +55,7 @@ class User(UserBase, table=True):
         sa_type=DateTime(timezone=True),  # type: ignore
     )
     items: list["Item"] = Relationship(back_populates="owner", cascade_delete=True)
+    recipes: list["Recipe"] = Relationship(back_populates="owner", cascade_delete=True)
 
 
 # Properties to return via API, id is always required
@@ -108,6 +110,31 @@ class ItemsPublic(SQLModel):
     count: int
 
 
+# Recipe Model
+class Recipe(SQLModel, table=True):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    owner_id: uuid.UUID = Field(
+        foreign_key="user.id", nullable=False, ondelete="CASCADE"
+    )
+    owner: User | None = Relationship(back_populates="recipes")
+
+    title: str = Field(max_length=255)
+    url: str = Field(max_length=2048)
+    image: str | None = Field(default=None, max_length=2048)
+    site_name: str | None = Field(default=None, max_length=255)
+
+    # JSON content for flexible storage of recipe details
+    ingredients: list[str] | None = Field(default=None, sa_type=JSON)
+    ingredient_groups: list[dict[str, Any]] | None = Field(default=None, sa_type=JSON)
+    instructions: list[str] | None = Field(default=None, sa_type=JSON)
+    nutrients: dict[str, str] | None = Field(default=None, sa_type=JSON)
+
+    created_at: datetime | None = Field(
+        default_factory=get_datetime_utc,
+        sa_type=lambda: DateTime(timezone=True),  # type: ignore
+    )
+
+
 # Generic message
 class Message(SQLModel):
     message: str
@@ -140,7 +167,6 @@ class ParseRecipeResponse(SQLModel):
     """
     Response model for the parse_recipe endpoint.
     Contains all possible fields from recipe_scrapers.AbstractScraper.to_json().
-    Most fields are optional since their availability depends on the recipe website.
     """
     # Core recipe information
     title: str | None = None
