@@ -111,7 +111,7 @@ class Recipe(RecipeBase, table=True):
     owner_id: uuid.UUID = Field(
         foreign_key="user.id", nullable=False, ondelete="CASCADE"
     )
-    owner: "User | None" = Relationship(back_populates="recipes")  # type: ignore
+    owner: "User" | None = Relationship(back_populates="recipes")  # type: ignore
     
     # Override base fields to add JSON storage type
     ingredients: list[str] | None = Field(default=None, sa_type=JSON)

@@ -87,7 +87,7 @@ class Item(ItemBase, table=True):
     owner_id: uuid.UUID = Field(
         foreign_key="user.id", nullable=False, ondelete="CASCADE"
     )
-    owner: "User | None" = Relationship(back_populates="items")  # type: ignore
+    owner: "User" | None = Relationship(back_populates="items")  # type: ignore
 
 
 # Properties to return via API, id is always required
