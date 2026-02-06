@@ -1,0 +1,531 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.12, pytest-7.4.4, pluggy-1.6.0 -- D:\Projecten_Thuis\mealprepper\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Projecten_Thuis\mealprepper\backend
+plugins: anyio-4.12.1
+collecting ... collected 10 items
+
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success ERROR [ 10%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_missing_url ERROR [ 20%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_http_error ERROR [ 30%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_request_error ERROR [ 40%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_requires_authentication ERROR [ 50%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_invalid_token ERROR [ 60%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success_authenticated ERROR [ 70%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_true_authenticated ERROR [ 80%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_false_default ERROR [ 90%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_response_includes_all_fields ERROR [100%]
+
+=================================== ERRORS ====================================
+_________________ ERROR at setup of test_parse_recipe_success _________________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+_______________ ERROR at setup of test_parse_recipe_missing_url _______________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+_______________ ERROR at setup of test_parse_recipe_http_error ________________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+______________ ERROR at setup of test_parse_recipe_request_error ______________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+_________ ERROR at setup of test_parse_recipe_requires_authentication _________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+___________ ERROR at setup of test_parse_recipe_with_invalid_token ____________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+__________ ERROR at setup of test_parse_recipe_success_authenticated __________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+______ ERROR at setup of test_parse_recipe_with_save_true_authenticated _______
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+_________ ERROR at setup of test_parse_recipe_with_save_false_default _________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+______ ERROR at setup of test_parse_recipe_response_includes_all_fields _______
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   psycopg.errors.UndefinedTable: relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2249: in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+..\.venv\Lib\site-packages\sqlalchemy\orm\context.py:306: in orm_execute_statement
+    result = conn.execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1419: in execute
+    return meth(
+..\.venv\Lib\site-packages\sqlalchemy\sql\elements.py:527: in _execute_on_connection
+    return connection._execute_clauseelement(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1641: in _execute_clauseelement
+    ret = self._execute_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1846: in _execute_context
+    return self._exec_single_context(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1986: in _exec_single_context
+    self._handle_dbapi_exception(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2363: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:1967: in _exec_single_context
+    self.dialect.do_execute(
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: in do_execute
+    cursor.execute(statement, parameters)
+..\.venv\Lib\site-packages\psycopg\cursor.py:117: in execute
+    raise ex.with_traceback(None)
+E   sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "user" does not exist
+E   LINE 2: FROM "user" 
+E                ^
+E   [SQL: SELECT "user".email, "user".is_active, "user".is_superuser, "user".full_name, "user".id, "user".hashed_password, "user".created_at 
+E   FROM "user" 
+E   WHERE "user".email = %(email_1)s::VARCHAR]
+E   [parameters: {'email_1': 'admin@example.com'}]
+E   (Background on this error at: https://sqlalche.me/e/20/f405)
+=========================== short test summary info ===========================
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success - sq...
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_missing_url
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_http_error
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_request_error
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_requires_authentication
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_invalid_token
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success_authenticated
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_true_authenticated
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_false_default
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_response_includes_all_fields
+============================= 10 errors in 2.52s ==============================

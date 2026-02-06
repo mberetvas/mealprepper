@@ -1,0 +1,1011 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.12, pytest-7.4.4, pluggy-1.6.0 -- D:\Projecten_Thuis\mealprepper\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Projecten_Thuis\mealprepper\backend
+plugins: anyio-4.12.1
+collecting ... collected 10 items
+
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success ERROR [ 10%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_missing_url ERROR [ 20%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_http_error ERROR [ 30%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_request_error ERROR [ 40%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_requires_authentication ERROR [ 50%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_invalid_token ERROR [ 60%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success_authenticated ERROR [ 70%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_true_authenticated ERROR [ 80%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_false_default ERROR [ 90%]
+tests/api/routes/test_recipe_scraper.py::test_parse_recipe_response_includes_all_fields ERROR [100%]
+
+=================================== ERRORS ====================================
+_________________ ERROR at setup of test_parse_recipe_success _________________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+_______________ ERROR at setup of test_parse_recipe_missing_url _______________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+_______________ ERROR at setup of test_parse_recipe_http_error ________________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+______________ ERROR at setup of test_parse_recipe_request_error ______________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+_________ ERROR at setup of test_parse_recipe_requires_authentication _________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+___________ ERROR at setup of test_parse_recipe_with_invalid_token ____________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+__________ ERROR at setup of test_parse_recipe_success_authenticated __________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+______ ERROR at setup of test_parse_recipe_with_save_true_authenticated _______
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+_________ ERROR at setup of test_parse_recipe_with_save_false_default _________
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+______ ERROR at setup of test_parse_recipe_response_includes_all_fields _______
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   psycopg.errors.ConnectionTimeout: connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+
+The above exception was the direct cause of the following exception:
+tests\conftest.py:18: in db
+    init_db(session)
+app\core\db.py:24: in init_db
+    user = session.exec(
+..\.venv\Lib\site-packages\sqlmodel\orm\session.py:81: in exec
+    results = super().execute(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2351: in execute
+    return self._execute_internal(
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2239: in _execute_internal
+    conn = self._connection_for_bind(bind)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:2108: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+..\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+..\.venv\Lib\site-packages\sqlalchemy\orm\session.py:1187: in _connection_for_bind
+    conn = bind.connect()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3285: in connect
+    return self._connection_cls(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:145: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:2448: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:143: in __init__
+    self._dbapi_connection = engine.raw_connection()
+..\.venv\Lib\site-packages\sqlalchemy\engine\base.py:3309: in raw_connection
+    return self.pool.connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:447: in connect
+    return _ConnectionFairy._checkout(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:1264: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:711: in checkout
+    rec = pool._do_get()
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:177: in _do_get
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\impl.py:175: in _do_get
+    return self._create_connection()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:388: in _create_connection
+    return _ConnectionRecord(self)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:673: in __init__
+    self.__connect()
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:899: in __connect
+    with util.safe_reraise():
+..\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+..\.venv\Lib\site-packages\sqlalchemy\pool\base.py:895: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+..\.venv\Lib\site-packages\sqlalchemy\engine\create.py:661: in connect
+    return dialect.connect(*cargs, **cparams)
+..\.venv\Lib\site-packages\sqlalchemy\engine\default.py:630: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+..\.venv\Lib\site-packages\psycopg\connection.py:129: in connect
+    raise type(last_ex)("\n".join(lines)).with_traceback(None)
+E   sqlalchemy.exc.OperationalError: (psycopg.errors.ConnectionTimeout) connection timeout expired
+E   Multiple connection attempts failed. All failures were:
+E   - host: 'localhost', port: 5432, hostaddr: '::1': connection timeout expired
+E   - host: 'localhost', port: 5432, hostaddr: '127.0.0.1': connection timeout expired
+E   (Background on this error at: https://sqlalche.me/e/20/e3q8)
+=========================== short test summary info ===========================
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success - sq...
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_missing_url
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_http_error
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_request_error
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_requires_authentication
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_invalid_token
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_success_authenticated
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_true_authenticated
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_with_save_false_default
+ERROR tests/api/routes/test_recipe_scraper.py::test_parse_recipe_response_includes_all_fields
+======================= 10 errors in 262.62s (0:04:22) ========================
