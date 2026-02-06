@@ -34,11 +34,11 @@ if TYPE_CHECKING:
 class IngredientGroup(SQLModel):
     """
     Group of ingredients with a purpose/label.
-    
+
     Used for recipes that have separate ingredient sections
     (e.g., "For the dough", "For the filling").
     """
-    
+
     purpose: str | None = None
     ingredients: list[str] = Field(default_factory=list)
 
@@ -47,10 +47,10 @@ class IngredientGroup(SQLModel):
 class RecipeBase(SQLModel):
     """
     Base recipe properties shared across create/update schemas.
-    
+
     Contains common fields for recipe management.
     """
-    
+
     title: str = Field(min_length=1, max_length=255)
     url: str | None = Field(default=None, max_length=2048)
     image: str | None = Field(default=None, max_length=2048)
@@ -65,12 +65,12 @@ class RecipeBase(SQLModel):
 class RecipeCreate(RecipeBase):
     """
     Schema for creating a new recipe via API.
-    
+
     Can be used for manual recipe entry or when saving scraped recipes.
     Owner is set automatically from authenticated user.
     Used by POST /recipes/ endpoint.
     """
-    
+
     pass
 
 
@@ -78,11 +78,11 @@ class RecipeCreate(RecipeBase):
 class RecipeUpdate(SQLModel):
     """
     Schema for updating an existing recipe via API.
-    
+
     All fields are optional to support partial updates.
     Used by PUT /recipes/{id} endpoint.
     """
-    
+
     title: str | None = Field(default=None, min_length=1, max_length=255)
     url: str | None = Field(default=None, max_length=2048)
     image: str | None = Field(default=None, max_length=2048)
@@ -97,31 +97,31 @@ class RecipeUpdate(SQLModel):
 class Recipe(RecipeBase, table=True):
     """
     Recipe database table model.
-    
+
     Stores recipe data from web scraping or manual entry.
     JSON fields allow flexible storage of structured recipe data.
-    
+
     Relationships:
         - owner: Many-to-one relationship with User
-    
+
     Foreign Keys:
         - owner_id: References user.id (CASCADE on delete)
-    
+
     Table name: recipe
     """
-    
+
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     owner_id: uuid.UUID = Field(
         foreign_key="user.id", nullable=False, ondelete="CASCADE"
     )
     owner: User = Relationship(back_populates="recipes")
-    
+
     # Override base fields to add JSON storage type
     ingredients: list[str] | None = Field(default=None, sa_type=JSON)
     ingredient_groups: list[dict[str, Any]] | None = Field(default=None, sa_type=JSON)
     instructions: list[str] | None = Field(default=None, sa_type=JSON)
     nutrients: dict[str, str] | None = Field(default=None, sa_type=JSON)
-    
+
     created_at: datetime | None = Field(
         default_factory=get_datetime_utc,
         sa_type=DateTime(timezone=True),  # type: ignore
@@ -132,11 +132,11 @@ class Recipe(RecipeBase, table=True):
 class RecipePublic(RecipeBase):
     """
     Public recipe information returned by API endpoints.
-    
+
     Includes recipe ID and owner ID for access control.
     Used in all recipe-related API responses.
     """
-    
+
     id: uuid.UUID
     owner_id: uuid.UUID
     created_at: datetime | None = None
@@ -145,10 +145,10 @@ class RecipePublic(RecipeBase):
 class RecipesPublic(SQLModel):
     """
     Paginated list of recipes for API responses.
-    
+
     Used by GET /recipes/ endpoint with skip/limit pagination.
     """
-    
+
     data: list[RecipePublic]
     count: int
 
@@ -157,12 +157,12 @@ class RecipesPublic(SQLModel):
 class ParseRecipeResponse(SQLModel):
     """
     Response model for the recipe scraper/parser endpoint.
-    
+
     Contains all possible fields from recipe_scrapers library.
     Not all fields are persisted to database when saving.
     Used by POST /recipes/scrape endpoint.
     """
-    
+
     # Core recipe information
     title: str | None = None
     author: str | None = None
@@ -208,4 +208,3 @@ class ParseRecipeResponse(SQLModel):
     # Additional metadata
     keywords: list[str] | None = None
     links: list[dict[str, str]] | None = None
-
