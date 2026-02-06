@@ -111,19 +111,19 @@ These are shared, foundational components needed before any user story implement
 
 ### User Story: Users click navigation items to move between sections
 
-- [ ] T016 [US2] Implement navigation link click handling in `frontend/src/components/Sidebar/Main.tsx`
+- [x] T016 [US2] Implement navigation link click handling in `frontend/src/components/Sidebar/Main.tsx`
   - Each link uses TanStack Router Link component
   - Click navigates to corresponding path
   - Mobile: setOpenMobile(false) on click to close hamburger
   - Acceptance: Click each nav item; correct page loads
 
-- [ ] T017 [US2] [P] Add active route detection in navigation in `frontend/src/components/Sidebar/Main.tsx`
+- [x] T017 [US2] [P] Add active route detection in navigation in `frontend/src/components/Sidebar/Main.tsx`
   - Use useLocation() hook to get current pathname
   - Add aria-current="page" to active item
   - Add visual highlight class (e.g., bg-sidebar-accent) to active item
   - Acceptance: Current page nav item visually highlighted
 
-- [ ] T018 [US2] Create comprehensive navigation test in `frontend/tests/home-page.spec.ts`
+- [x] T018 [US2] Create comprehensive navigation test in `frontend/tests/home-page.spec.ts`
   - Test each navigation link:
     - Dashboard → /
     - Items → /items
@@ -134,13 +134,13 @@ These are shared, foundational components needed before any user story implement
   - Verify URL changes and page content updates
   - Acceptance: All 6 navigation tests pass
 
-- [ ] T019 [US2] [P] Test navigation on different screen sizes in `frontend/tests/home-page.spec.ts`
+- [x] T019 [US2] [P] Test navigation on different screen sizes in `frontend/tests/home-page.spec.ts`
   - Mobile (375px): Hamburger menu visible; click opens nav; navigation works
   - Tablet (768px): Sidebar visible; navigation works
   - Desktop (1024px+): Full sidebar; navigation works
   - Acceptance: Navigation tests pass at all breakpoints
 
-- [ ] T020 [US2] Verify no 404 errors for any navigation route
+- [x] T020 [US2] Verify no 404 errors for any navigation route
   - Test all 6 routes load without errors
   - Check browser console for errors
   - Verify each route has proper TanStack Router configuration

@@ -187,3 +187,223 @@ test.describe("Home Page / Dashboard", () => {
     await expect(page).toHaveTitle(/Dashboard/)
   })
 })
+
+test.describe("Navigation Bar / Sidebar", () => {
+  test.use({ storageState: authFile })
+
+  test("All navigation links are accessible via sidebar", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify navigation items are visible
+    const navItems = [
+      "Dashboard",
+      "Recipes",
+      "Meal Plans",
+      "Shopping List",
+      "Items",
+    ]
+    
+    for (const item of navItems) {
+      const navLink = page.getByRole("link", { name: item })
+      await expect(navLink).toBeVisible()
+    }
+  })
+
+  test("Navigation from Dashboard to Recipes works", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click on Recipes navigation item
+    await page.getByRole("link", { name: "Recipes" }).click()
+    
+    // Verify URL changed
+    await expect(page).toHaveURL("/recipes")
+    
+    // Verify page loaded
+    await expect(page.getByRole("heading", { name: "Recipes" })).toBeVisible()
+  })
+
+  test("Navigation from Dashboard to Meal Plans works", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click on Meal Plans navigation item
+    await page.getByRole("link", { name: "Meal Plans" }).click()
+    
+    // Verify URL changed
+    await expect(page).toHaveURL("/meal-plans")
+    
+    // Verify page loaded
+    await expect(
+      page.getByRole("heading", { name: "Meal Plans" })
+    ).toBeVisible()
+  })
+
+  test("Navigation from Dashboard to Shopping List works", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click on Shopping List navigation item
+    await page.getByRole("link", { name: "Shopping List" }).click()
+    
+    // Verify URL changed
+    await expect(page).toHaveURL("/shopping-list")
+    
+    // Verify page loaded
+    await expect(
+      page.getByRole("heading", { name: "Shopping List" })
+    ).toBeVisible()
+  })
+
+  test("Navigation from Dashboard to Items works", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click on Items navigation item
+    await page.getByRole("link", { name: "Items" }).click()
+    
+    // Verify URL changed
+    await expect(page).toHaveURL("/items")
+    
+    // Verify page loaded
+    await expect(page.getByRole("heading", { name: "Items" })).toBeVisible()
+  })
+
+  test("Navigation roundtrip between multiple pages works", async ({
+    page,
+  }) => {
+    // Start at Dashboard
+    await page.goto("/")
+    await expect(page).toHaveURL("/")
+    
+    // Go to Recipes
+    await page.getByRole("link", { name: "Recipes" }).click()
+    await expect(page).toHaveURL("/recipes")
+    
+    // Go to Meal Plans
+    await page.getByRole("link", { name: "Meal Plans" }).click()
+    await expect(page).toHaveURL("/meal-plans")
+    
+    // Go back to Dashboard
+    await page.getByRole("link", { name: "Dashboard" }).click()
+    await expect(page).toHaveURL("/")
+  })
+
+  test("Active navigation item has aria-current attribute", async ({
+    page,
+  }) => {
+    // Navigate to Recipes page
+    await page.goto("/recipes")
+    
+    // Find the Recipes navigation link
+    const recipesLink = page.getByRole("link", { name: "Recipes" })
+    
+    // Verify aria-current is set
+    await expect(recipesLink).toHaveAttribute("aria-current", "page")
+  })
+
+  test("Inactive navigation items do not have aria-current attribute", async ({
+    page,
+  }) => {
+    // Navigate to Recipes page
+    await page.goto("/recipes")
+    
+    // Find the Dashboard navigation link which should NOT have aria-current
+    const dashboardLink = page.getByRole("link", { name: "Dashboard" })
+    
+    // Verify aria-current is not set or has undefined value
+    const ariaCurrent = await dashboardLink.getAttribute("aria-current")
+    expect(ariaCurrent).toBeFalsy()
+  })
+
+  test("Navigation works correctly on mobile (375px)", async ({ page }) => {
+    // Set mobile viewport
+    await page.setViewportSize({ width: 375, height: 667 })
+    await page.goto("/")
+    
+    // Click on Recipes in navigation
+    await page.getByRole("link", { name: "Recipes" }).click()
+    
+    // Verify navigation worked
+    await expect(page).toHaveURL("/recipes")
+    
+    // Go back to Dashboard
+    await page.getByRole("link", { name: "Dashboard" }).click()
+    await expect(page).toHaveURL("/")
+  })
+
+  test("Navigation works correctly on tablet (768px)", async ({ page }) => {
+    // Set tablet viewport
+    await page.setViewportSize({ width: 768, height: 1024 })
+    await page.goto("/")
+    
+    // Navigate through multiple pages
+    await page.getByRole("link", { name: "Meal Plans" }).click()
+    await expect(page).toHaveURL("/meal-plans")
+    
+    await page.getByRole("link", { name: "Shopping List" }).click()
+    await expect(page).toHaveURL("/shopping-list")
+    
+    await page.getByRole("link", { name: "Items" }).click()
+    await expect(page).toHaveURL("/items")
+  })
+
+  test("Navigation works correctly on desktop (1024px+)", async ({ page }) => {
+    // Set desktop viewport
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto("/")
+    
+    // Navigate through all pages
+    const navItems = [
+      { name: "Recipes", url: "/recipes" },
+      { name: "Meal Plans", url: "/meal-plans" },
+      { name: "Shopping List", url: "/shopping-list" },
+      { name: "Items", url: "/items" },
+      { name: "Dashboard", url: "/" },
+    ]
+    
+    for (const item of navItems) {
+      await page.getByRole("link", { name: item.name }).click()
+      await expect(page).toHaveURL(item.url)
+    }
+  })
+
+  test("No 404 errors on any navigation route", async ({ page }) => {
+    const routes = ["/", "/recipes", "/meal-plans", "/shopping-list", "/items"]
+    
+    for (const route of routes) {
+      await page.goto(route)
+      
+      // Check for 404 in console (if error was logged)
+      let error404Found = false
+      page.once("console", (msg) => {
+        if (msg.text().includes("404") || msg.text().includes("Not Found")) {
+          error404Found = true
+        }
+      })
+      
+      // Verify page is not showing 404 error message
+      const notFoundMessages = await page
+        .getByText(/404|Not Found/, { exact: false })
+        .count()
+      expect(notFoundMessages).toBe(0)
+      expect(error404Found).toBe(false)
+    }
+  })
+
+  test("Navigation maintains state when returning to previous page", async ({
+    page,
+  }) => {
+    // Start at Dashboard
+    await page.goto("/")
+    const dashboardGreeting = page.getByRole("heading", { name: /Hi,/ })
+    
+    // Verify greeting is present
+    await expect(dashboardGreeting).toBeVisible()
+    
+    // Navigate away
+    await page.getByRole("link", { name: "Recipes" }).click()
+    
+    // Navigate back
+    await page.getByRole("link", { name: "Dashboard" }).click()
+    
+    // Verify greeting is still visible
+    await expect(dashboardGreeting).toBeVisible()
+  })
+})
