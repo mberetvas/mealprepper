@@ -27,7 +27,6 @@ from sqlmodel import Field, Relationship, SQLModel
 from app.models.base import get_datetime_utc
 
 if TYPE_CHECKING:
-    from app.models.item import Item
     from app.models.recipe import Recipe
 
 
@@ -115,7 +114,6 @@ class User(UserBase, table=True):
     Stores user authentication and profile information.
     
     Relationships:
-        - items: One-to-many relationship with Item (cascade delete)
         - recipes: One-to-many relationship with Recipe (cascade delete)
     
     Table name: user
@@ -127,7 +125,6 @@ class User(UserBase, table=True):
         default_factory=get_datetime_utc,
         sa_type=DateTime(timezone=True),  # type: ignore
     )
-    items: list["Item"] = Relationship(back_populates="owner", cascade_delete=True)
     recipes: list["Recipe"] = Relationship(back_populates="owner", cascade_delete=True)
 
 
