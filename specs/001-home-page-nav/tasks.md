@@ -53,13 +53,13 @@ These are shared, foundational components needed before any user story implement
   - Structure: Follow existing route pattern
   - Acceptance: Route loads; title visible
 
-- [ ] T009 Update Main.tsx navigation items array in `frontend/src/components/Sidebar/Main.tsx`
+- [x] T009 Update Main.tsx navigation items array in `frontend/src/components/Sidebar/Main.tsx`
   - Add ChefHat icon for Recipes path /recipes
   - Add Calendar icon for Meal Plans path /meal-plans
   - Add ShoppingCart icon for Shopping List path /shopping-list
   - Acceptance: All 6 nav items appear in sidebar; icons visible
 
-- [ ] T010 [P] Add ARIA labels to navigation links in `frontend/src/components/Sidebar/Main.tsx`
+- [x] T010 [P] Add ARIA labels to navigation links in `frontend/src/components/Sidebar/Main.tsx`
   - Add aria-label to each link item
   - Add aria-current="page" logic for active link detection
   - Acceptance: Screen reader properly announces nav items and active state

@@ -44,9 +44,14 @@ export function Main({ items }: MainProps) {
                   tooltip={item.title}
                   isActive={isActive}
                   asChild
+                  aria-label={item.title}
                 >
-                  <RouterLink to={item.path} onClick={handleMenuClick}>
-                    <item.icon />
+                  <RouterLink
+                    to={item.path}
+                    onClick={handleMenuClick}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    <item.icon aria-hidden="true" />
                     <span>{item.title}</span>
                   </RouterLink>
                 </SidebarMenuButton>
