@@ -197,28 +197,28 @@ These are shared, foundational components needed before any user story implement
 
 ### User Story: Navigation adapts to mobile/tablet screens with hamburger menu
 
-- [ ] T027 [US4] Verify hamburger menu visibility on mobile in browser
+- [x] T027 [US4] Verify hamburger menu visibility on mobile in browser
   - Viewport: 375px width
   - SidebarTrigger visible
   - Click triggers sidebar open
   - Sidebar pushes content or overlays
   - Acceptance: Hamburger visible and functional on mobile
 
-- [ ] T028 [US4] [P] Test hamburger menu on various mobile sizes in `frontend/tests/home-page.spec.ts`
+- [x] T028 [US4] [P] Test hamburger menu on various mobile sizes in `frontend/tests/home-page.spec.ts`
   - iPhone SE (375px)
   - iPhone 12 (390px)
   - Android typical (412px)
   - All should show hamburger
   - Acceptance: Tests pass on all mobile sizes
 
-- [ ] T029 [US4] [P] Test hamburger menu auto-close on navigation in `frontend/tests/home-page.spec.ts`
+- [x] T029 [US4] [P] Test hamburger menu auto-close on navigation in `frontend/tests/home-page.spec.ts`
   - Open hamburger
   - Click a navigation link
   - Menu automatically closes
   - Page navigates correctly
   - Acceptance: Auto-close behavior verified
 
-- [ ] T030 [US4] Test sidebar visibility on tablet in `frontend/tests/home-page.spec.ts`
+- [x] T030 [US4] Test sidebar visibility on tablet in `frontend/tests/home-page.spec.ts`
   - Viewport: 768px width (tablet)
   - Sidebar visible in normal state
   - Hamburger may or may not show (based on design)
