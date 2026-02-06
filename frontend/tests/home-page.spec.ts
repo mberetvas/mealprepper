@@ -407,3 +407,150 @@ test.describe("Navigation Bar / Sidebar", () => {
     await expect(dashboardGreeting).toBeVisible()
   })
 })
+
+test.describe("User Menu / Account Settings", () => {
+  test.use({ storageState: authFile })
+
+  test("User menu is visible in sidebar", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify user menu button is visible
+    const userMenu = page.getByTestId("user-menu")
+    await expect(userMenu).toBeVisible()
+  })
+
+  test("User menu displays user information", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click user menu to open dropdown
+    await page.getByTestId("user-menu").click()
+    
+    // Verify dropdown is visible with user info
+    await page.getByRole("menuitem", { name: /User Settings/i }).isVisible()
+  })
+
+  test("User menu can be opened and closed", async ({ page }) => {
+    await page.goto("/")
+    
+    // Click to open menu
+    await page.getByTestId("user-menu").click()
+    
+    // Verify Settings menu item is visible
+    const settingsMenuItem = page.getByRole("menuitem", {
+      name: /User Settings/i,
+    })
+    await expect(settingsMenuItem).toBeVisible()
+    
+    // Click elsewhere to close menu
+    await page.getByRole("heading", { name: /Hi,/ }).click()
+    
+    // Verify menu is closed
+    await expect(settingsMenuItem).not.toBeVisible()
+  })
+
+  test("User Settings navigation works", async ({ page }) => {
+    await page.goto("/")
+    
+    // Open user menu
+    await page.getByTestId("user-menu").click()
+    
+    // Click Settings
+    await page.getByRole("menuitem", { name: /User Settings/i }).click()
+    
+    // Verify navigation to settings page
+    await expect(page).toHaveURL("/settings")
+  })
+
+  test("User menu has proper ARIA labels", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify user menu button has aria-label
+    const userMenuButton = page.getByTestId("user-menu")
+    const ariaLabel = await userMenuButton.getAttribute("aria-label")
+    expect(ariaLabel).toBeTruthy()
+    expect(ariaLabel).toContain("User menu")
+  })
+
+  test("Settings and Logout menu items have ARIA labels", async ({ page }) => {
+    await page.goto("/")
+    
+    // Open user menu
+    await page.getByTestId("user-menu").click()
+    
+    // Verify Settings item has aria-label
+    const settingsItem = page.getByRole("menuitem", { name: /User Settings/i })
+    const settingsAriaLabel = await settingsItem.getAttribute("aria-label")
+    expect(settingsAriaLabel).toContain("Settings")
+    
+    // Verify Logout item has aria-label
+    const logoutItem = page.getByRole("menuitem", { name: /Log Out/i })
+    const logoutAriaLabel = await logoutItem.getAttribute("aria-label")
+    expect(logoutAriaLabel).toContain("Log Out")
+  })
+
+  test("Logout button clears authentication and redirects to login", async ({
+    page,
+  }) => {
+    await page.goto("/")
+    
+    // Open user menu
+    await page.getByTestId("user-menu").click()
+    
+    // Click Logout
+    await page.getByRole("menuitem", { name: /Log Out/i }).click()
+    
+    // Verify redirected to login page
+    await expect(page).toHaveURL("/login")
+    
+    // Verify auth token is removed from localStorage
+    const token = await page.evaluate(() => {
+      return localStorage.getItem("token")
+    })
+    expect(token).toBeNull()
+  })
+
+  test("Protected route redirects to login when not authenticated", async ({
+    page,
+    context,
+  }) => {
+    // Create a new context without authentication
+    const newPage = await context.newPage()
+    
+    // Try to access protected route
+    await newPage.goto("/")
+    
+    // Verify redirected to login
+    await expect(newPage).toHaveURL("/login", { timeout: 5000 })
+    
+    await newPage.close()
+  })
+
+  test("User can access dashboard after login", async ({ page }) => {
+    // Start at login page
+    await page.goto("/login")
+    
+    // Dashboard should not be accessible yet (will redirect)
+    await page.goto("/")
+    await expect(page).toHaveURL("/login", { timeout: 5000 })
+  })
+
+  test("Logout followed by accessing protected route redirects to login", async ({
+    page,
+  }) => {
+    // Start at dashboard
+    await page.goto("/")
+    
+    // Open user menu and logout
+    await page.getByTestId("user-menu").click()
+    await page.getByRole("menuitem", { name: /Log Out/i }).click()
+    
+    // Verify at login page
+    await expect(page).toHaveURL("/login")
+    
+    // Try to access protected route
+    await page.goto("/")
+    
+    // Should be redirected back to login
+    await expect(page).toHaveURL("/login", { timeout: 5000 })
+  })
+})

@@ -64,6 +64,7 @@ export function User({ user }: { user: any }) {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               data-testid="user-menu"
+              aria-label={`User menu for ${user?.full_name || user?.email}`}
             >
               <UserInfo fullName={user?.full_name} email={user?.email} />
               <ChevronsUpDown className="ml-auto size-4 text-muted-foreground" />
@@ -80,12 +81,15 @@ export function User({ user }: { user: any }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <RouterLink to="/settings" onClick={handleMenuClick}>
-              <DropdownMenuItem>
+              <DropdownMenuItem aria-label="User Settings">
                 <Settings />
                 User Settings
               </DropdownMenuItem>
             </RouterLink>
-            <DropdownMenuItem onClick={handleLogout}>
+            <DropdownMenuItem
+              onClick={handleLogout}
+              aria-label="Log Out"
+            >
               <LogOut />
               Log Out
             </DropdownMenuItem>

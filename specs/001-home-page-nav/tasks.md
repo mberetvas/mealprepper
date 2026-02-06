@@ -152,40 +152,40 @@ These are shared, foundational components needed before any user story implement
 
 ### User Story: Users access settings and logout from navigation
 
-- [ ] T021 [US3] Verify User profile menu component in `frontend/src/components/Sidebar/User.tsx`
+- [x] T021 [US3] Verify User profile menu component in `frontend/src/components/Sidebar/User.tsx`
   - Verify: Avatar displays with user initials
   - Verify: User menu dropdown opens on click
   - Verify: Settings link routes to /settings
   - Verify: Logout button handler clears token and redirects
   - Acceptance: Menu opens; clicks work; navigation verified
 
-- [ ] T022 [US3] [P] Add keyboard navigation to User menu in `frontend/src/components/Sidebar/User.tsx`
+- [x] T022 [US3] [P] Add keyboard navigation to User menu in `frontend/src/components/Sidebar/User.tsx`
   - Tab key: Focus through menu items
   - Enter/Space: Activate menu items
   - Escape: Close menu
   - Acceptance: All keyboard shortcuts work
 
-- [ ] T023 [US3] [P] Add ARIA labels to User menu in `frontend/src/components/Sidebar/User.tsx`
+- [x] T023 [US3] [P] Add ARIA labels to User menu in `frontend/src/components/Sidebar/User.tsx`
   - aria-label on menu trigger button
   - aria-label on menu items (Settings, Logout)
   - Proper ARIA roles for menu structure
   - Acceptance: Screen reader announces menu items
 
-- [ ] T024 [US3] Test settings navigation in `frontend/tests/home-page.spec.ts`
+- [x] T024 [US3] Test settings navigation in `frontend/tests/home-page.spec.ts`
   - Click user avatar
   - Menu opens
   - Click Settings
   - Verify navigation to /settings page
   - Acceptance: Test passes
 
-- [ ] T025 [US3] [P] Test logout functionality in `frontend/tests/home-page.spec.ts`
+- [x] T025 [US3] [P] Test logout functionality in `frontend/tests/home-page.spec.ts`
   - Click user avatar
   - Click Logout
   - Verify token removed from localStorage
   - Verify redirected to /login page
   - Acceptance: Test passes; user logged out
 
-- [ ] T026 [US3] Test protected route redirects in `frontend/tests/home-page.spec.ts`
+- [x] T026 [US3] Test protected route redirects in `frontend/tests/home-page.spec.ts`
   - Clear token from localStorage
   - Navigate to /
   - Verify redirected to /login
