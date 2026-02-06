@@ -24,6 +24,42 @@ test.describe("Home Page / Dashboard", () => {
     ).toBeVisible()
   })
 
+  test("Stats section displays with all metrics", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify Your Activity section heading
+    await expect(
+      page.getByRole("heading", { name: "Your Activity", level: 2 })
+    ).toBeVisible()
+    
+    // Verify all 3 stat cards are visible
+    const statCards = [
+      { testId: "stat-items", label: "Your Items" },
+      { testId: "stat-recipes", label: "Recipes" },
+      { testId: "stat-meal-plans", label: "Meal Plans" },
+    ]
+    
+    for (const stat of statCards) {
+      const statElement = page.getByTestId(stat.testId)
+      await expect(statElement).toBeVisible()
+      await expect(statElement).toContainText(stat.label)
+    }
+  })
+
+  test("Stat cards display values correctly", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify stat values are displayed (should be "0" for new users)
+    const items = page.getByTestId("stat-items")
+    const recipes = page.getByTestId("stat-recipes")
+    const mealPlans = page.getByTestId("stat-meal-plans")
+    
+    // All should show some numeric value
+    await expect(items).toContainText("0")
+    await expect(recipes).toContainText("0")
+    await expect(mealPlans).toContainText("0")
+  })
+
   test("All 4 quick action cards are visible", async ({ page }) => {
     await page.goto("/")
     
@@ -72,6 +108,11 @@ test.describe("Home Page / Dashboard", () => {
     await expect(
       page.getByRole("heading", { name: /Hi/, level: 1 })
     ).toBeVisible()
+    
+    // Verify stats cards are visible (stacked on mobile)
+    const statCards = page.getByTestId(/stat-/)
+    const statCount = await statCards.count()
+    expect(statCount).toBe(3)
     
     // Verify cards are stacked (1 column layout)
     const cards = page.getByTestId(/quick-action-/)
@@ -185,6 +226,49 @@ test.describe("Home Page / Dashboard", () => {
     
     // Verify page title
     await expect(page).toHaveTitle(/Dashboard/)
+  })
+
+  test("Stats section is responsive on tablet (768px)", async ({ page }) => {
+    // Set tablet viewport
+    await page.setViewportSize({ width: 768, height: 1024 })
+    await page.goto("/")
+    
+    // Verify stats heading is visible
+    await expect(
+      page.getByRole("heading", { name: "Your Activity", level: 2 })
+    ).toBeVisible()
+    
+    // Verify all 3 stats are visible in 3-column layout
+    const statCards = page.getByTestId(/stat-/)
+    await expect(statCards).toHaveCount(3)
+  })
+
+  test("Stats section is responsive on desktop (1024px+)", async ({ page }) => {
+    // Set desktop viewport
+    await page.setViewportSize({ width: 1280, height: 720 })
+    await page.goto("/")
+    
+    // Verify stats are visible
+    const statCards = page.getByTestId(/stat-/)
+    await expect(statCards).toHaveCount(3)
+    
+    // Verify all 4 quick action cards are also visible
+    const actionCards = page.getByTestId(/quick-action-/)
+    await expect(actionCards).toHaveCount(4)
+  })
+
+  test("Stat cards have proper styling and icons", async ({ page }) => {
+    await page.goto("/")
+    
+    // Verify stat cards exist with expected structure
+    const statItems = page.getByTestId("stat-items")
+    const statRecipes = page.getByTestId("stat-recipes")
+    const statMealPlans = page.getByTestId("stat-meal-plans")
+    
+    // All should be visible
+    await expect(statItems).toBeVisible()
+    await expect(statRecipes).toBeVisible()
+    await expect(statMealPlans).toBeVisible()
   })
 })
 

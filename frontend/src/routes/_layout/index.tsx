@@ -1,7 +1,14 @@
 import { createFileRoute, Link as RouterLink } from "@tanstack/react-router"
-import { Briefcase, Calendar, ShoppingCart, UtensilsCrossed } from "lucide-react"
+import {
+  Briefcase,
+  Calendar,
+  ChefHat,
+  ShoppingCart,
+  UtensilsCrossed,
+} from "lucide-react"
 
 import QuickActionCard from "@/components/Common/QuickActionCard"
+import StatCard from "@/components/Common/StatCard"
 import useAuth from "@/hooks/useAuth"
 
 export const Route = createFileRoute("/_layout/")({
@@ -63,6 +70,34 @@ function Dashboard() {
         <p className="mt-2 text-muted-foreground">
           Welcome back! Let's get cooking today.
         </p>
+      </div>
+
+      {/* Stats Section */}
+      <div>
+        <h2 className="mb-4 text-xl font-semibold">Your Activity</h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <StatCard
+            label="Your Items"
+            value="0"
+            icon={Briefcase}
+            variant="info"
+            testId="stat-items"
+          />
+          <StatCard
+            label="Recipes"
+            value="0"
+            icon={ChefHat}
+            variant="success"
+            testId="stat-recipes"
+          />
+          <StatCard
+            label="Meal Plans"
+            value="0"
+            icon={Calendar}
+            variant="warning"
+            testId="stat-meal-plans"
+          />
+        </div>
       </div>
 
       {/* Quick Actions Grid */}

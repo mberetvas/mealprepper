@@ -231,7 +231,7 @@ These are shared, foundational components needed before any user story implement
 
 ### User Story: Dashboard shows quick stats or summary information
 
-- [ ] T031 [US5] [Optional] Enhance Dashboard with summary section in `frontend/src/routes/_layout/index.tsx`
+- [x] T031 [US5] [Optional] Enhance Dashboard with summary section in `frontend/src/routes/_layout/index.tsx`
   - Add section: "Quick Stats" or "Your Activity"
   - Display placeholders or computed values:
     - Total items count
@@ -240,7 +240,7 @@ These are shared, foundational components needed before any user story implement
   - Use StatCard component (create if needed)
   - Acceptance: Stats section renders; values display
 
-- [ ] T032 [US5] [Optional] Create StatCard component in `frontend/src/components/Common/StatCard.tsx`
+- [x] T032 [US5] [Optional] Create StatCard component in `frontend/src/components/Common/StatCard.tsx`
   - Props: label, value, icon, variant
   - Styling: Smaller card showing single metric
   - Responsive: Stack on mobile, grid on desktop
