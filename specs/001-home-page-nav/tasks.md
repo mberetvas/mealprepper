@@ -70,14 +70,14 @@ These are shared, foundational components needed before any user story implement
 
 ### User Story: Users see welcoming home page with personalized greeting after authentication
 
-- [ ] T011 [US1] Enhance Dashboard component in `frontend/src/routes/_layout/index.tsx`
+- [x] T011 [US1] Enhance Dashboard component in `frontend/src/routes/_layout/index.tsx`
   - Keep: Personalized greeting with user.full_name
   - Add: Welcome section with improved styling
   - Add: Typography: h1 with greeting, p with welcome message
   - Styling: Use Tailwind classes (text-2xl font-bold, text-muted-foreground)
   - Acceptance: Dashboard loads; greeting and welcome message visible; styled properly
 
-- [ ] T012 [US1] [P] Add Quick Actions section to Dashboard in `frontend/src/routes/_layout/index.tsx`
+- [x] T012 [US1] [P] Add Quick Actions section to Dashboard in `frontend/src/routes/_layout/index.tsx`
   - Grid layout: grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6
   - Four QuickActionCard components:
     - "View Recipes" → /recipes (ChefHat icon)
@@ -86,20 +86,20 @@ These are shared, foundational components needed before any user story implement
     - "Your Items" → /items (Briefcase icon)
   - Acceptance: All 4 cards visible in grid; responsive at mobile/tablet/desktop
 
-- [ ] T013 [US1] [P] Add empty state handler to Dashboard in `frontend/src/routes/_layout/index.tsx`
+- [x] T013 [US1] [P] Add empty state handler to Dashboard in `frontend/src/routes/_layout/index.tsx`
   - Check if user is new (no items/recipes)
   - Display helpful onboarding message if empty
   - Optional: "Get started" button linking to first action
   - Acceptance: Empty state renders for new users
 
-- [ ] T014 [US1] [P] Add test for Dashboard home page load in `frontend/tests/home-page.spec.ts`
+- [x] T014 [US1] [P] Add test for Dashboard home page load in `frontend/tests/home-page.spec.ts`
   - Test: Navigate to protected route → logged in → dashboard loads
   - Verify: Greeting message displays with user name
   - Verify: All 4 quick action cards visible
   - Verify: Welcome section renders
   - Acceptance: Test passes; Playwright runs without errors
 
-- [ ] T015 [US1] Verify Dashboard responsive design across breakpoints
+- [x] T015 [US1] Verify Dashboard responsive design across breakpoints
   - Mobile (375px): Cards stack; layout readable
   - Tablet (768px): 2-column grid; sidebar hamburger
   - Desktop (1024px+): Full 4-column grid visible
